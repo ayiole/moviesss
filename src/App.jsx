@@ -7,20 +7,23 @@ import {
 import './App.css'
 import Card from './components/card/Card'
 import Header from './components/header/Header'
+import Layout from './components/layout/Layout'
+import MainPage from './pages/Main/MainPage'
 
 function App() {
   return (
     <>
       <Router>
         <Header />
-
-        <Routes>
-          <Route path='/' element={<Card />} />
-          <Route path='/favorite' element={<Card />} />
-          <Route path='/addMovie' element={<Card />} />
-          <Route path='/addgenre' element={<Card />} />
-          <Route path='*' element={<Navigate to='/' replace />} />
-        </Routes>
+        <Layout>
+          <Routes>
+            <Route path='/' element={<MainPage />} />
+            <Route path='/favorite' element={<Card />} />
+            <Route path='/addMovie' element={<Card />} />
+            <Route path='/addgenre' element={<Card />} />
+            <Route path='*' element={<Navigate to='/' replace />} />
+          </Routes>
+        </Layout>
       </Router>
     </>
   )
