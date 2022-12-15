@@ -23,19 +23,22 @@ const GenresPage = () => {
   const addGenreHandler = (event) => {
     event.preventDefault()
 
-    addGenreRequest(
-      {
-        url: 'http://movies/addGenre.php',
-        method: 'POST',
-        body: {
-          genre_name: event.target.genre.value,
+    const value = event.target.genre.value.trim()
+
+    !!value &&
+      addGenreRequest(
+        {
+          url: 'http://movies/addGenre.php',
+          method: 'POST',
+          body: {
+            genre_name: value,
+          },
         },
-      },
-      (data) => {
-        console.log(data)
-        setGenres(data)
-      }
-    )
+        (data) => {
+          event.target.genre.value = ''
+          setGenres(data)
+        }
+      )
   }
 
   const deleteGenre = (id) => {
@@ -52,18 +55,25 @@ const GenresPage = () => {
 
   return (
     <>
-      <form onSubmit={(event) => addGenreHandler(event)}>
-        <label>
+      <form
+        className={styles.form}
+        onSubmit={(event) => addGenreHandler(event)}
+      >
+        <label className={styles.label}>
           Добавить жанр
-          <input name='genre' />
+          <input
+            className={styles.input}
+            name='genre'
+            placeholder='название жанра'
+          />
         </label>
-        <button>Добавить</button>
+        <button className={styles.button}>добавить</button>
       </form>
 
-      <div>
+      <div className={styles.box}>
         {genres?.map((genre) => (
-          <div key={genre[0]}>
-            <p>{genre[1]}</p>
+          <div key={genre[0]} className={styles.genre}>
+            <p className={styles.text}>{genre[1]}</p>
             <CrossIcon onClick={() => deleteGenre(genre[0])} />
           </div>
         ))}

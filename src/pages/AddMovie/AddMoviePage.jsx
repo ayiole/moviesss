@@ -8,7 +8,7 @@ const AddMoviePage = () => {
   const { sendRequest: sendAddMovieRequest } = useHttp()
   const [genres, setGenres] = useState([])
   const refForm = useRef()
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   useEffect(() => {
     sendGenresRequest(
@@ -26,11 +26,11 @@ const AddMoviePage = () => {
 
     const form = new FormData()
 
-    form.append('name', refForm.current.name.value)
-    form.append('year', refForm.current.year.value)
-    form.append('producer', refForm.current.producer.value)
-    form.append('duration', refForm.current.duration.value)
-    form.append('description', refForm.current.description.value)
+    form.append('name', refForm.current.name.value.trim())
+    form.append('year', refForm.current.year.value.trim())
+    form.append('producer', refForm.current.producer.value.trim())
+    form.append('duration', refForm.current.duration.value.trim())
+    form.append('description', refForm.current.description.value.trim())
     form.append('upfile', refForm.current.upfile.files[0])
     form.append('upfile2', refForm.current.upfile2.files[0])
 
@@ -59,40 +59,85 @@ const AddMoviePage = () => {
   }
 
   return (
-    <form onSubmit={(event) => addMovieHandler(event)} ref={refForm}>
-      <input type='text' className='' name='name' placeholder='Название' />
-      <input type='number' className='' name='year' placeholder='Год' />
-      <input type='text' className='' name='producer' placeholder='Режиссер' />
+    <form
+      className={styles.form}
+      onSubmit={(event) => addMovieHandler(event)}
+      ref={refForm}
+    >
       <input
+        className={styles.input}
+        type='text'
+        name='name'
+        placeholder='Название'
+        required
+      />
+      <input
+        className={styles.input}
         type='number'
-        className=''
+        name='year'
+        min='1850'
+        placeholder='Год'
+        required
+      />
+      <input
+        className={styles.input}
+        type='text'
+        name='producer'
+        placeholder='Режиссер'
+        required
+      />
+      <input
+        className={styles.input}
+        type='number'
+        min='0'
         name='duration'
         placeholder='Длительность'
+        required
       />
       <textarea
+        className={styles.input}
         type='text'
-        className=''
         name='description'
         placeholder='Описание'
+        style={{ resize: 'none', height: '200px' }}
+        required
       />
-      <input type='file' className='' name='upfile' />
-      <input type='file' className='' name='upfile2' />
-      <div className=''>
+      <label className={styles.fileLabel}>
+        Добавить картинку
+        <input
+          className={styles.fileInput}
+          type='file'
+          name='upfile'
+          required
+        />
+      </label>
+      <label className={styles.fileLabel}>
+        Добавить постер
+        <input
+          className={styles.fileInput}
+          type='file'
+          name='upfile2'
+          required
+        />
+      </label>
+      <div className={styles.box}>
         {genres?.map((genre, index) => (
-          <div key={genre[0]}>
-            <label>
-              <input
-                type='checkbox'
-                value={genre[0]}
-                name={`genre${index}`}
-                className='chb'
-              />
+          <div key={genre[0]} className={styles.box}>
+            <input
+              id={genre[0]}
+              type='checkbox'
+              value={genre[0]}
+              name={`genre${index}`}
+              className={styles.checkbox}
+              onClick={(event) => console.log(event.target.checked)}
+            />
+            <label className={styles.label} htmlFor={genre[0]}>
               {genre[1]}
             </label>
           </div>
         ))}
       </div>
-      <button>Добавить фильм</button>
+      <button className={styles.button}>Добавить фильм</button>
     </form>
   )
 }
