@@ -1,7 +1,10 @@
 import classNames from 'classnames'
+import { useState } from 'react'
+import useHttp from '../../hooks/useHttp'
 import styles from './card.module.scss'
 
 const Card = ({
+  id,
   name,
   year,
   producer,
@@ -10,7 +13,29 @@ const Card = ({
   genres,
   poster,
   backgroundImage,
+  isLiked,
+  updateMovies
 }) => {
+  const { sendRequest: sendFavouriteRequest } = useHttp()
+  const [isLikedState, setIsLikedState] = useState(isLiked)
+
+  const toggleFavourite = (id, isLiked) => {
+    sendFavouriteRequest(
+      {
+        url: isLiked
+          ? 'http://movies/deleteFavorites.php'
+          : 'http://movies/addFavorites.php',
+        method: 'POST',
+        body: {
+          movie_id: id,
+        },
+      },
+      (data) => {
+        setIsLikedState(data.isLiked)
+        updateMovies()
+      }
+    )
+  }
   return (
     <div className={styles.card}>
       <div className={styles.info}>
@@ -32,7 +57,11 @@ const Card = ({
         </div>
         <p className={styles.description}>{description}</p>
         <div className={styles.favourite}>
-          <LikeIcon />
+          <LikeIcon
+            id={id}
+            isLiked={isLikedState}
+            onClick={(id, isLiked) => toggleFavourite(id, isLiked)}
+          />
         </div>
       </div>
       <div
@@ -46,14 +75,14 @@ const Card = ({
   )
 }
 
-const LikeIcon = ({ isLiked, onClick }) => {
+const LikeIcon = ({ id, isLiked, onClick }) => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
       xmlnsXlink='http://www.w3.org/1999/xlink'
       viewBox='0 0 51.997 51.997'
       className={classNames(styles.likesIcon, isLiked && styles.likesIconLiked)}
-      onClick={onClick}
+      onClick={() => onClick(id, isLiked)}
     >
       <path
         d='M51.911,16.242C51.152,7.888,45.239,1.827,37.839,1.827c-4.93,0-9.444,2.653-11.984,6.905
