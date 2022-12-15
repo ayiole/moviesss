@@ -8,11 +8,13 @@
 
     $addGenre = mysqli_query($connect, "INSERT INTO `genre`(`genre_id`, `name`)
      VALUES (NULL,'$genre_name')");
+    
+    $genres = mysqli_query($connect, "select * from genre;");
 
-    $addGenre = mysqli_fetch_all($addGenre);
+    $genres = mysqli_fetch_all($genres);
 
     header("Content-Type: application/json");
-    echo json_encode($body);
+    echo json_encode($genres, JSON_NUMERIC_CHECK);
 
 
 ?>
