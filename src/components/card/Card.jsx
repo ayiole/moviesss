@@ -42,7 +42,6 @@ const Card = ({
         <div className={styles.header}>
           <img
             className={styles.poster}
-            // 'https://movieplayer.net-cdn.it/t/images/2017/12/20/bright_jpg_191x283_crop_q85.jpg'
             src={poster}
             alt='movie'
           />
@@ -66,7 +65,6 @@ const Card = ({
       </div>
       <div
         className={styles.back}
-        // 'https://occ-0-2433-448.1.nflxso.net/art/cd5c9/3e192edf2027c536e25bb5d3b6ac93ced77cd5c9.jpg'
         style={{
           backgroundImage: `url(${backgroundImage})`,
         }}
