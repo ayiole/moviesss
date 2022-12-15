@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import CardsList from '../../components/cardsList/cardsList'
+import CardsList from '../../components/cardsList/CardsList'
 import useHttp from '../../hooks/useHttp'
 import styles from './favouritePage.module.scss'
 
@@ -10,7 +10,7 @@ const FavouritePage = () => {
   useEffect(() => {
     sendMoviesRequest(
       {
-        url: 'http://movies/getMovies.php',
+        url: 'http://movies/getFavorites.php',
       },
       (data) => {
         setMovies(data)
@@ -18,9 +18,13 @@ const FavouritePage = () => {
     )
   }, [sendMoviesRequest])
 
+  const updateMovies = (id) => {
+    setMovies(movies.filter((movie) => movie['0'] !== id))
+  }
+
   return (
     <>
-      <CardsList movies={movies} />
+      <CardsList movies={movies} updateMovies={(id) => updateMovies(id)} />
     </>
   )
 }
