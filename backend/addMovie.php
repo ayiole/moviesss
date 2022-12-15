@@ -5,13 +5,13 @@
     $body = json_decode(file_get_contents('php://input'), true);
 
     
-    $path1 = 'image_url_poster/' . time() . $_FILES['upfile']['name'];
+    $path1 = 'image_url_poster/' . time() . $body['upfile']['name'];
 
-    move_uploaded_file($_FILES['upfile']['tmp_name'], $path);
+    move_uploaded_file($body['upfile']['tmp_name'], $path);
 
-    $path2 = 'image_url_side/' . time() . $_FILES['upfile2']['name'];
+    $path2 = 'image_url_side/' . time() . $body['upfile2']['name'];
 
-    move_uploaded_file($_FILES['upfile2']['tmp_name'], $path2);
+    move_uploaded_file($body['upfile2']['tmp_name'], $path2);
 
     $genres = $body['genres'];
     $name = $body['name'];
