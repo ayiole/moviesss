@@ -18,9 +18,13 @@ const MainPage = () => {
     )
   }, [sendMoviesRequest])
 
+  const updateMovies = (id) => {
+    setMovies(movies.filter((movie) => movie['0'] !== id))
+  }
+
   return (
     <>
-      <CardsList movies={movies} />
+      <CardsList movies={movies} updateMovies={(id) => updateMovies(id)} />
     </>
   )
 }

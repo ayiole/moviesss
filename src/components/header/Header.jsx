@@ -18,7 +18,7 @@ const Header = () => {
             <Link to='/addMovie' className={styles.link}>Добавить фильм</Link>
           </li>
           <li>
-            <Link to='/addGenre' className={styles.link}>Жанры</Link>
+            <Link to='/genres' className={styles.link}>Жанры</Link>
           </li>
         </ul>
       </nav>

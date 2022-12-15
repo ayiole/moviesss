@@ -1,0 +1,11 @@
+.cross {
+  width: 20px;
+  height: 20px;
+  fill: gray;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    fill: red;
+  }
+}

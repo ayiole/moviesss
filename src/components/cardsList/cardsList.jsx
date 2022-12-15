@@ -1,7 +1,7 @@
 import styles from './cardsList.module.scss'
 import Card from '../card/Card'
 
-const CardsList = ({ movies, updateMovies, children }) => {
+const CardsList = ({ movies, updateMovies, isFav = false, children }) => {
   return (
     <div className={styles.box}>
       {movies?.map((movie) => (
@@ -18,6 +18,7 @@ const CardsList = ({ movies, updateMovies, children }) => {
           genres={movie['8']}
           isLiked={movie['9'] === '1'}
           updateMovies={() => updateMovies(movie['0'])}
+          isFav={isFav}
         />
       ))}
     </div>

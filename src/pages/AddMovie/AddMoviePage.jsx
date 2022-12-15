@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import useHttp from '../../hooks/useHttp'
 import styles from './addMoviePage.module.scss'
 
@@ -7,6 +8,7 @@ const AddMoviePage = () => {
   const { sendRequest: sendAddMovieRequest } = useHttp()
   const [genres, setGenres] = useState([])
   const refForm = useRef()
+  const navigate = useNavigate();
 
   useEffect(() => {
     sendGenresRequest(
@@ -51,7 +53,7 @@ const AddMoviePage = () => {
         body: form,
       },
       (data) => {
-        console.log(data)
+        navigate('/')
       }
     )
   }
@@ -67,7 +69,7 @@ const AddMoviePage = () => {
         name='duration'
         placeholder='Длительность'
       />
-      <input
+      <textarea
         type='text'
         className=''
         name='description'

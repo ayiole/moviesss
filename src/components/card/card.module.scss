@@ -100,6 +100,8 @@
   padding-left: 25px;
   padding-bottom: 20px;
   margin-top: auto;
+  display: flex;
+  gap: 10px;
 }
 
 .likesIcon {
@@ -122,14 +124,6 @@
   }
 }
 
-// .likesIconLiked {
-//   fill: white;
-
-//   &:hover {
-//     fill: white;
-//   }
-// }
-
 .back {
   position: absolute;
   top: 0;
@@ -141,4 +135,8 @@
 
   width: 100%;
   background-position: -100% 10% !important;
+}
+
+.cross {
+  fill: gray;
 }

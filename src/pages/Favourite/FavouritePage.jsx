@@ -24,7 +24,11 @@ const FavouritePage = () => {
 
   return (
     <>
-      <CardsList movies={movies} updateMovies={(id) => updateMovies(id)} />
+      <CardsList
+        movies={movies}
+        updateMovies={(id) => updateMovies(id)}
+        isFav
+      />
     </>
   )
 }

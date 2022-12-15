@@ -1,6 +1,7 @@
 import classNames from 'classnames'
 import { useState } from 'react'
 import useHttp from '../../hooks/useHttp'
+import CrossIcon from '../cross/Cross'
 import styles from './card.module.scss'
 
 const Card = ({
@@ -14,9 +15,11 @@ const Card = ({
   poster,
   backgroundImage,
   isLiked,
-  updateMovies
+  updateMovies,
+  isFav,
 }) => {
   const { sendRequest: sendFavouriteRequest } = useHttp()
+  const { sendRequest: deleteMovieRequest } = useHttp()
   const [isLikedState, setIsLikedState] = useState(isLiked)
 
   const toggleFavourite = (id, isLiked) => {
@@ -32,17 +35,27 @@ const Card = ({
       },
       (data) => {
         setIsLikedState(data.isLiked)
-        updateMovies()
+        isFav && updateMovies()
       }
     )
   }
+
+  const deleteMovie = (id) => {
+    deleteMovieRequest({
+      url: `http://movies/deleteMovie.php?movie_id=${id}`,
+      method: 'POST',
+    })
+
+    updateMovies()
+  }
+
   return (
     <div className={styles.card}>
       <div className={styles.info}>
         <div className={styles.header}>
           <img
             className={styles.poster}
-            src={poster}
+            src={'http://movies/' + poster}
             alt='movie'
           />
           <div className={styles.data}>
@@ -57,30 +70,33 @@ const Card = ({
         <p className={styles.description}>{description}</p>
         <div className={styles.favourite}>
           <LikeIcon
-            id={id}
             isLiked={isLikedState}
-            onClick={(id, isLiked) => toggleFavourite(id, isLiked)}
+            onClick={(isLiked) => toggleFavourite(id, isLiked)}
+          />
+          <CrossIcon
+            crossClassName={styles.cross}
+            onClick={() => deleteMovie(id)}
           />
         </div>
       </div>
       <div
         className={styles.back}
         style={{
-          backgroundImage: `url(${backgroundImage})`,
+          backgroundImage: `url(http://movies/${backgroundImage})`,
         }}
       ></div>
     </div>
   )
 }
 
-const LikeIcon = ({ id, isLiked, onClick }) => {
+const LikeIcon = ({ isLiked, onClick }) => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
       xmlnsXlink='http://www.w3.org/1999/xlink'
       viewBox='0 0 51.997 51.997'
       className={classNames(styles.likesIcon, isLiked && styles.likesIconLiked)}
-      onClick={() => onClick(id, isLiked)}
+      onClick={() => onClick(isLiked)}
     >
       <path
         d='M51.911,16.242C51.152,7.888,45.239,1.827,37.839,1.827c-4.93,0-9.444,2.653-11.984,6.905
