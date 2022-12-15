@@ -9,10 +9,12 @@
     $addFavs = mysqli_query($connect, "INSERT INTO `favorites`(`fav_id`, `movie_id`)
      VALUES (NULL,'$movie_id')");
 
-    $addFavs = mysqli_fetch_all($addFavs);
+    $obj = [
+        'isLiked' => true
+    ];
 
     header("Content-Type: application/json");
-    echo json_encode($body);
+    echo json_encode($obj);
 
 
 ?>

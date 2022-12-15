@@ -8,10 +8,12 @@
 
     $addFavs = mysqli_query($connect, "DELETE FROM `favorites` WHERE movie_id = $movie_id");
 
-    $addFavs = mysqli_fetch_all($addFavs);
+    $obj = [
+        'isLiked' => false
+    ];
 
     header("Content-Type: application/json");
-    echo json_encode($body);
+    echo json_encode($obj);
 
 
 ?>
