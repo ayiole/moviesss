@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import CardsList from '../../components/cardsList/cardsList'
+import CardsList from '../../components/cardsList/CardsList'
 import useHttp from '../../hooks/useHttp'
 import styles from './mainPage.module.scss'
 
