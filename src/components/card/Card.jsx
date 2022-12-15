@@ -7,6 +7,7 @@ const Card = ({
   producer,
   duration,
   description,
+  genres,
   poster,
   backgroundImage,
 }) => {
@@ -25,7 +26,7 @@ const Card = ({
             <h4>{`${year}, ${producer}`}</h4>
             <div className={styles.box}>
               <span className={styles.minutes}>{duration} min</span>
-              <p className={styles.type}>Action, Crime, Fantasy</p>
+              <p className={styles.type}>{genres}</p>
             </div>
           </div>
         </div>
