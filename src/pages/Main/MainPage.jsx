@@ -13,7 +13,6 @@ const MainPage = () => {
         url: 'http://movies/getMovies.php',
       },
       (data) => {
-        console.log(data)
         setMovies(data)
       }
     )

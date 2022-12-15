@@ -12,7 +12,7 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <Link to='/favorite' className={styles.link}>Избранное</Link>
+            <Link to='/favourite' className={styles.link}>Избранное</Link>
           </li>
           <li>
             <Link to='/addMovie' className={styles.link}>Добавить фильм</Link>
