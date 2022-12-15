@@ -110,17 +110,25 @@
   transition: all 0.3s;
 
   &:hover {
-    fill: rgb(190, 189, 189);
+    fill: rgba(red, 0.5);
   }
 
-  &--liked {
-    fill: white;
+  &Liked {
+    fill: red;
 
     &:hover {
-      fill: white;
+      fill: rgba(gray, 0.5);
     }
   }
 }
+
+// .likesIconLiked {
+//   fill: white;
+
+//   &:hover {
+//     fill: white;
+//   }
+// }
 
 .back {
   position: absolute;
@@ -134,50 +142,3 @@
   width: 100%;
   background-position: -100% 10% !important;
 }
-
-// @media screen and (min-width: 768px) {
-//   .movie_header {
-//     width: 60%;
-//   }
-
-//   .movie_desc {
-//     width: 50%;
-//   }
-
-//   .info_section {
-//     background: linear-gradient(to right, #0d0d0c 50%, transparent 100%);
-//   }
-
-//   .blur_back {
-//     width: 80%;
-//     background-position: -100% 10% !important;
-//   }
-// }
-
-// @media screen and (max-width: 768px) {
-//   .movie_card {
-//     width: 95%;
-//     margin: 70px auto;
-//     min-height: 350px;
-//     height: auto;
-//   }
-
-//   .blur_back {
-//     width: 100%;
-//     background-position: 50% 50% !important;
-//   }
-
-//   .movie_header {
-//     width: 100%;
-//     margin-top: 85px;
-//   }
-
-//   .movie_desc {
-//     width: 100%;
-//   }
-
-//   .info_section {
-//     background: linear-gradient(to top, rgb(20, 20, 19) 50%, transparent 100%);
-//     display: inline-grid;
-//   }
-// }
