@@ -9,7 +9,7 @@
         WHEN m.movie_id in (select f.movie_id from favorites f) THEN true
         ELSE false
     END
-    from movie as m;");
+    from movie as m order by m.movie_id DESC;");
 
     $movies = mysqli_fetch_all($movies);
 
