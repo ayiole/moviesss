@@ -10,7 +10,7 @@ const FavouritePage = () => {
   useEffect(() => {
     sendMoviesRequest(
       {
-        url: 'http://movies/getFavorites.php',
+        url: 'vendor/getFavorites.php',
       },
       (data) => {
         setMovies(data)

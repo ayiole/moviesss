@@ -26,8 +26,8 @@ const Card = ({
     sendFavouriteRequest(
       {
         url: isLiked
-          ? 'http://movies/deleteFavorites.php'
-          : 'http://movies/addFavorites.php',
+          ? 'vendor/deleteFavorites.php'
+          : 'vendor/addFavorites.php',
         method: 'POST',
         body: {
           movie_id: id,
@@ -42,7 +42,7 @@ const Card = ({
 
   const deleteMovie = (id) => {
     deleteMovieRequest({
-      url: `http://movies/deleteMovie.php?movie_id=${id}`,
+      url: `vendor/deleteMovie.php?movie_id=${id}`,
       method: 'POST',
     })
 
@@ -55,7 +55,7 @@ const Card = ({
         <div className={styles.header}>
           <img
             className={styles.poster}
-            src={'http://movies/' + poster}
+            src={'vendor/' + poster}
             alt='movie'
           />
           <div className={styles.data}>
@@ -82,7 +82,7 @@ const Card = ({
       <div
         className={styles.back}
         style={{
-          backgroundImage: `url(http://movies/${backgroundImage})`,
+          backgroundImage: `url(vendor/${backgroundImage})`,
         }}
       ></div>
     </div>

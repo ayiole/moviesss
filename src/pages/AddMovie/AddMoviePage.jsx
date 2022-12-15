@@ -13,7 +13,7 @@ const AddMoviePage = () => {
   useEffect(() => {
     sendGenresRequest(
       {
-        url: 'http://movies/getGenres.php',
+        url: 'vendor/getGenres.php',
       },
       (data) => {
         setGenres(data)
@@ -48,7 +48,7 @@ const AddMoviePage = () => {
 
     sendAddMovieRequest(
       {
-        url: 'http://movies/addMovie.php',
+        url: 'vendor/addMovie.php',
         method: 'POST',
         body: form,
       },

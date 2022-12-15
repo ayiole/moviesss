@@ -12,7 +12,7 @@ const GenresPage = () => {
   useEffect(() => {
     sendGenresRequest(
       {
-        url: 'http://movies/getGenres.php',
+        url: 'vendor/getGenres.php',
       },
       (data) => {
         setGenres(data)
@@ -28,7 +28,7 @@ const GenresPage = () => {
     !!value &&
       addGenreRequest(
         {
-          url: 'http://movies/addGenre.php',
+          url: 'vendor/addGenre.php',
           method: 'POST',
           body: {
             genre_name: value,
@@ -44,7 +44,7 @@ const GenresPage = () => {
   const deleteGenre = (id) => {
     deleteGenreRequest(
       {
-        url: `http://movies/deleteGenre.php?genre_id=${id}`,
+        url: `vendor/deleteGenre.php?genre_id=${id}`,
         method: 'POST',
       },
       (data) => {

@@ -10,7 +10,7 @@ const MainPage = () => {
   useEffect(() => {
     sendMoviesRequest(
       {
-        url: 'http://movies/getMovies.php',
+        url: 'vendor/getMovies.php',
       },
       (data) => {
         setMovies(data)
